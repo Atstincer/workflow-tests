@@ -30,6 +30,8 @@ jobs:
       - name: evaluating commit messages
         if: ${{contains(join(env.COMMIT_MESSAGES),'try')}}
         run: echo "COMMIT_MESSAGES contains try"
+      - name: getting job status
+        run: echo "Job status ${{job.status}}"
       - name: Notify discord if deployment success
         if: ${{ success() }}
         uses: sarisia/actions-status-discord@v1
