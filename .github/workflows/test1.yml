@@ -37,9 +37,10 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
           # status: ${{ job.status }}
           title: "Deployment details"
           color: 0x0000ff
           description: |
-            Commit: `${{ github.event.commits[0].id }}`
-            Message: "${{ github.event.commits[0].message }}"
+            Commit: ${{ github.event.commits[0].id }}
+            Message: ${{ github.event.commits[0].message }}
