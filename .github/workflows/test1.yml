@@ -44,3 +44,4 @@ jobs:
           description: |
             Commit: ${{ github.event.commits[0].id }}
             Message: ${{ github.event.commits[0].message }}
+            Author: ${{ github.event.commits[0].author.name }}
