@@ -1,0 +1,32 @@
+name: Testing stuff
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  a_test_job:
+    runs-on: ubuntu-latest
+    env:
+      COMMITS: ${{ toJson(github.event.commits) }}
+      COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: commits general
+        run: echo "$COMMITS"
+      - name: head commit
+        run: echo "Head commit ${{github.head_commit}}"
+      - name: first commit id
+        run: echo "Commit id ${{github.event.commits[0].id}}"
+      - name: first commit message
+        run: echo "Commit message ${{github.event.commits[0].message}}"
+      - name: commit messages
+        run: echo "$COMMIT_MESSAGES"
+      - name: evaluating commit messages
+        if: ${{contains(join(env.COMMIT_MESSAGES),'try')}}
+        run: echo "COMMIT_MESSAGES contains try"
