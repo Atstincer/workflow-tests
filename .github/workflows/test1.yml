@@ -38,10 +38,10 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
-          # status: ${{ job.status }}
-          title: "Deployment details"
+          notimestamp: true
           color: 0x0000ff
+          title: "Deployment details"
           description: |
-            Commit: ${{ github.event.commits[0].id }}
-            Message: ${{ github.event.commits[0].message }}
-            Author: ${{ github.event.commits[0].author.name }}
+            **Commit:** ${{ github.event.commits[0].id }}
+            **Message:** ${{ github.event.commits[0].message }}
+            **Author:** ${{ github.event.commits[0].author.name }}
