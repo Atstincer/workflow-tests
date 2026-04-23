@@ -39,3 +39,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           # status: ${{ job.status }}
           title: "Deployment details"
+          color: 0x0000ff
+          description: |
+            Commit: `${{ github.event.commits[0].id }}`
+            Message: "${{ github.event.commits[0].message }}"
