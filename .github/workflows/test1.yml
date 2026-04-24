@@ -39,8 +39,8 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           notimestamp: true
-          color: 0x0000ff
-          content: ":white_check_mark:**Deployment Successfull!** A new version deployed to production"
+          color: #90EE90
+          content: ":white_check_mark: **Deployment Successfull!** A new version deployed to production"
           title: "Deployment details"
           description: |
             **Commit:** ${{ github.event.commits[0].id }}
