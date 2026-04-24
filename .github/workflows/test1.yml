@@ -41,7 +41,7 @@ jobs:
           notimestamp: true
           color: #90EE90
           content: ":white_check_mark: **Deployment Successfull!** A new version deployed to production"
-          title: <span style="color:blue">Deployment details</span>
+          title: "${{<span style="color:blue">Deployment details</span>}}"
           description: |
             **Commit:** ${{ github.event.commits[0].id }}
             **Message:** ${{ github.event.commits[0].message }}
