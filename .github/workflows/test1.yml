@@ -40,7 +40,7 @@ jobs:
           nodetail: true
           notimestamp: true
           color: 0x0000ff
-          content: "**Deployment Successfull!** A new version deploy to production"
+          content: ":white_check_mark:**Deployment Successfull!** A new version deployed to production"
           title: "Deployment details"
           description: |
             **Commit:** ${{ github.event.commits[0].id }}
