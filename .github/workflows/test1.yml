@@ -13,8 +13,6 @@ jobs:
       COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
     steps:
       - uses: actions/checkout@v6
-      - name: getting the job to fail
-        run: exit 1
       - name: github context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -32,8 +30,14 @@ jobs:
       - name: evaluating commit messages
         if: ${{contains(join(env.COMMIT_MESSAGES),'try')}}
         run: echo "COMMIT_MESSAGES contains try"
+      - name: job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
       - name: getting job status
         run: echo "Job status ${{job.status}}"
+      - name: getting the job to fail
+        run: exit 1
       - name: Notify discord if deployment success
         if: ${{ success() }}
         uses: sarisia/actions-status-discord@v1
@@ -69,3 +73,4 @@ jobs:
             **Job:** ${{ github.job }}
 
             [View Commit](${{ github.event.head_commit.url }})
+            [View Workflow Run](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}}/)
