@@ -55,7 +55,7 @@ jobs:
             **Author:** ${{ github.event.commits[0].author.name }}
       - name: Notify discord if deployment fails
         if: ${{ failure() }}
-        uses: sarisia/actions-status-discord@v1
+        uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
