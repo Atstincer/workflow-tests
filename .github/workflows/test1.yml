@@ -73,4 +73,4 @@ jobs:
             **Job:** ${{ github.job }}
 
             [View Commit](${{ github.event.head_commit.url }})
-            [View Workflow Run](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}}/)
+            [View Workflow Run](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}}/job/${{job.check_run_id}})
