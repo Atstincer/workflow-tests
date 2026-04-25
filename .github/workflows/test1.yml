@@ -48,7 +48,7 @@ jobs:
           color: #90EE90
           content: ":white_check_mark: **Deployment Successfull!** A new version deployed to production"
           title: "Deployment details"
-          url: https://github.com/Atstincer/workflow-tests
+          url: ${{github.event.repository.html_url}}
           description: |
             **Commit:** ${{ github.event.commits[0].id }}
             **Message:** ${{ github.event.commits[0].message }}
