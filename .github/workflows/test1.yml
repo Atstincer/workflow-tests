@@ -13,6 +13,8 @@ jobs:
       COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
     steps:
       - uses: actions/checkout@v6
+      - name: getting the job to fail
+        run: exit 1
       - name: github context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -47,3 +49,23 @@ jobs:
             **Commit:** ${{ github.event.commits[0].id }}
             **Message:** ${{ github.event.commits[0].message }}
             **Author:** ${{ github.event.commits[0].author.name }}
+      - name: Notify discord if deployment fails
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@58180bef04cb443276032345179c5372bde1b03c
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
+          notimestamp: true
+          color: #ff0000
+          content: ":x: **Build failed!** The pipeline encountered an error"
+          title: "Failure details"
+          description: |
+            **Repository:** ${{ github.repository }}
+            **Branch:** ${{ github.ref_name }}
+            **Commit:** ${{ github.event.head_commit.id }}
+            **Message:** ${{ github.event.head_commit.message }}
+            **Author:** ${{ github.event.head_commit.author.name }}
+            **Workflow:** ${{ github.workflow }}
+            **Job:** ${{ github.job }}
+
+            [View Commit](${{ github.event.head_commit.url }})
