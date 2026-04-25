@@ -36,11 +36,11 @@ jobs:
         run: echo "$JOB_CONTEXT"
       - name: getting job status
         run: echo "Job status ${{job.status}}"
-      - name: getting the job to fail
-        run: exit 1
+#      - name: getting the job to fail
+#        run: exit 1
       - name: Notify discord if deployment success
         if: ${{ success() }}
-        uses: sarisia/actions-status-discord@v1
+        uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
