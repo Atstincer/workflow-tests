@@ -1,4 +1,5 @@
 name: Testing stuff
+enabled: false
 
 on:
   push:
