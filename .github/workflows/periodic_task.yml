@@ -1,0 +1,12 @@
+name: Periodic Health-Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/20 * * * *'
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello!"
